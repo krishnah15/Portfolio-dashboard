@@ -2,7 +2,10 @@ import { useMemo } from "react"
 import styles from "../style/portfolioTable.module.css"
 
 export default function PortfolioTable({ stocks }: any) {
-
+    function num(v: any) {
+        const n = Number(v)
+        return Number.isFinite(n) ? n : 0
+    }
     const totalInvestment = useMemo(() => {
         return stocks.reduce((sum: number, s: any) => {
             if (!s.Qty || !s["Purchase Price"]) return sum
@@ -55,22 +58,22 @@ export default function PortfolioTable({ stocks }: any) {
                     }
 
                     const investment =
-                        (stock["Purchase Price"] ?? 0) * (stock.Qty ?? 0)
+                        num(stock["Purchase Price"]) * num(stock.Qty)
 
                     const presentValue =
-                        (stock.cmp ?? 0) * (stock.Qty ?? 0)
+                        num(stock.CMP) * num(stock.Qty)
 
                     const gainLoss =
-                        presentValue - investment
+                        num(presentValue) - num(investment)
 
                     const portfolioPercent =
-                        totalInvestment > 0
-                            ? (investment / totalInvestment) * 100
+                        num(totalInvestment) > 0
+                            ? (num(investment) / num(totalInvestment)) * 100
                             : 0
 
-                    sectorInvestment += investment
-                    sectorPresentValue += presentValue
-                    sectorGainLoss += gainLoss
+                    sectorInvestment += num(investment)
+                    sectorPresentValue += num(presentValue)
+                    sectorGainLoss += num(gainLoss)
 
                     const nextRow = stocks[i + 1]
                     const nextIsSector =
@@ -93,10 +96,9 @@ export default function PortfolioTable({ stocks }: any) {
 
                                 <td>{portfolioPercent.toFixed(2)}%</td>
 
-                                <td>{stock.cmp ?? "-"}</td>
+                                <td>{stock.cmp ?? stock.CMP ?? 0}</td>
 
-                                <td>{presentValue.toFixed(2)}</td>
-
+                                <td>{presentValue.toFixed(2) ?? 0}</td>
                                 <td
                                     className={
                                         gainLoss >= 0
@@ -107,9 +109,9 @@ export default function PortfolioTable({ stocks }: any) {
                                     {gainLoss.toFixed(2)}
                                 </td>
 
-                                <td>{stock.pe ?? "-"}</td>
+                                <td>{num(stock.pe ?? stock["P/E (TTM)"])}</td>
 
-                                <td>{stock.earnings ?? "-"}</td>
+                                <td>{num(stock.earnings ?? stock["Latest Earnings"])}</td>
 
                             </tr>
 
