@@ -1,0 +1,48 @@
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.header {
+    background: #111827;
+    color: white;
+}
+
+.header th {
+    padding: 12px;
+    text-align: left;
+}
+
+.row td {
+    padding: 10px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.row:hover {
+    background: #f9fafb;
+}
+
+.sectorRow td {
+    background: #e5e7eb;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 12px;
+}
+
+.gain {
+    color: #16a34a;
+    font-weight: bold;
+}
+
+.loss {
+    color: #dc2626;
+    font-weight: bold;
+}
+
+.sectorSummary td {
+    background: #f3f4f6;
+    font-weight: bold;
+    padding: 12px;
+    border-top: 2px solid #ddd;
+}
