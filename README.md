@@ -1,4 +1,4 @@
-Portfolio Dashboard
+Portfolio Dashboard - https://portfolio-dashboard-five-rouge.vercel.app/
 
 A dynamic portfolio dashboard built with Next.js, TypeScript, Tailwind/CSS Modules, and Node.js that visualizes stock holdings, calculates portfolio metrics, and fetches live market data.
 The application displays portfolio information in a structured table and updates stock prices periodicslly to compute real-time present value and gain/loss.
